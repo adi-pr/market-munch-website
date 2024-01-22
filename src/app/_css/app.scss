@@ -5,8 +5,8 @@
 
 :root {
   --base: 24px;
-  --font-body: system-ui;
-  --font-mono: 'Roboto Mono', monospace;
+  --font-body: 'Jost', sans-serif;
+  --font-jost: 'Jost', sans-serif;
 
   --gutter-h: 180px;
   --block-padding: 120px;
@@ -45,9 +45,17 @@ body,
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-jost);
   margin: 0;
+  padding: 0;
   color: var(--theme-text);
+
+  display: flex;
+  flex-flow: column;
+}
+
+.main {
+  flex: 1 1 auto;
 }
 
 ::selection {
@@ -100,8 +108,9 @@ p {
 
 ul,
 ol {
-  padding-left: var(--base);
-  margin: 0 0 var(--base);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 a {
