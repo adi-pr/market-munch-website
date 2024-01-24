@@ -24,27 +24,9 @@ export const ProductHero: React.FC<{
 
   return (
     <Fragment>
-      {!stripeProductID && (
-        <Gutter>
-          <Message
-            className={classes.warning}
-            warning={
-              <Fragment>
-                {'This product is not yet connected to Stripe. To link this product, '}
-                <Link
-                  href={`${process.env.NEXT_PUBLIC_SERVER_URL}/admin/collections/products/${id}`}
-                >
-                  edit this product in the admin panel
-                </Link>
-                {'.'}
-              </Fragment>
-            }
-          />
-        </Gutter>
-      )}
       <Gutter className={classes.productHero}>
         <div className={classes.content}>
-          <div className={classes.categories}>
+          <div className={classes.categoryWrapper}>
             {categories?.map((category, index) => {
               if (typeof category === 'object' && category !== null) {
                 const { title: categoryTitle } = category
@@ -54,27 +36,26 @@ export const ProductHero: React.FC<{
                 const isLast = index === categories.length - 1
 
                 return (
-                  <Fragment key={index}>
+                  <p key={index} className={classes.category}>
                     {titleToUse}
-                    {!isLast && <Fragment>, &nbsp;</Fragment>}
-                  </Fragment>
+                    {!isLast && <Fragment>, &nbsp;</Fragment>}{' '}
+                    <span className={classes.separator}>|</span>
+                  </p>
                 )
               }
 
               return null
             })}
+            <p className={classes.stock}>In Stock</p>
           </div>
           <h1 className={classes.title}>{title}</h1>
-          <div>
+          <Price product={product} button={false} />
+          <div className={classes.description}>
             <p className={classes.description}>
-              {`${description ? `${description} ` : ''}To edit this product, `}
-              <Link href={`${process.env.NEXT_PUBLIC_SERVER_URL}/admin/collections/products/${id}`}>
-                navigate to the admin dashboard
-              </Link>
-              {'.'}
+              <h6>Description</h6>
+              <p>{description}</p>
             </p>
           </div>
-          <Price product={product} button={false} />
           <AddToCartButton product={product} className={classes.addToCartButton} />
         </div>
         <div className={classes.media}>

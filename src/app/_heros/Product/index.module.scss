@@ -24,8 +24,15 @@
   }
 }
 
-.categories {
-  @extend %label;
+.categoryWrapper {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+  margin-top: 8px;
+}
+
+.category {
+  font-size: 16px;
 }
 
 .title {
@@ -63,7 +70,10 @@
 }
 
 .image {
-  object-fit: cover;
+  padding: 24px;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+  max-width: 100%;
 }
 
 .placeholder {
@@ -81,4 +91,21 @@
 
 .addToCartButton {
   margin-top: calc(var(--base) / 2);
+
+  @include mid-break {
+    width: 100%;
+  }
+}
+
+.stock {
+  color: var(--color-green-500);
+}
+
+.separator {
+  color: var(--color-gray-500);
+  padding: 0 10px;
+}
+
+.description {
+  padding: 5px 0;
 }
